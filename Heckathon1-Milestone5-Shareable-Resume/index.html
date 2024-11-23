@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shareable Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Form Container -->
+    <div class="form-container" id="formContainer">
+        <h1> Shareable Resume</h1>
+        <form id="resumeForm">
+            <label for="name"><i><b>Name</b></i></label>
+            <input type="text" id="name" placeholder="Full Name" required>
+            <label for="position"><i><b>Position/Role</b></i></label>
+            <input type="text" id="position" placeholder="Position/Role" required>
+            <label for="phone"><i><b>Phone</b></i></label>
+            <input type="text" id="phone" placeholder="Phone" required>  
+            <label for="email"><i><b>Email</b></i></label>
+            <input type="email" id="email" placeholder="Email" required>
+            <label for="address"><i><b>Address</b></i></label>
+            <input type="text" id="address" placeholder="Address" required> 
+            <label for="linkedin"><i><b>LinkedIn URL</b></i></label>
+            <input type="url" id="linkedin" placeholder="LinkedIn URL" required> 
+            <label for="profilePicture"><i><b>Profile Picture</b></i></label>
+            <input type="file" id="profilePicture" accept="image/*">
+
+            <!-- New Personal Info Fields -->
+            <label for="sonOf"><i><b>S/o</b></i></label>
+            <input type="text" id="sonOf" placeholder="S/o" required>
+            <label for="dob"><i><b>Date of Birth</b></i></label>
+            <input type="date" id="dob" required>
+            <label for="nationality"><i><b>Nationality</b></i></label>
+            <input type="text" id="nationality" placeholder="Nationality" required>
+            <label for="languages"><i><b>Languages</b></i></label>
+            <textarea id="languages" rows="2" placeholder="Languages" required></textarea>
+            <label for="hobbies"><i><b>Hobbies</b></i></label>
+            <textarea id="hobbies" rows="2" placeholder="Hobbies" required></textarea>
+            <label for="objective"><i><b>Career Objective</b></i></label>
+            <textarea id="objective" rows="3" placeholder="Career Objective" required></textarea>
+            <label for="experience"><i><b>Work Experience (comma separated)</b></i></label>
+            <textarea id="experience" rows="4" placeholder="Work Experience (comma-separated)" required></textarea>
+            <label for="education"><i><b>Education (comma separated)</b></i></label>
+            <textarea id="education" rows="3" placeholder="Education (comma-separated)" required></textarea>
+            <label for="skills"><i><b>Skills (format: skill:percentage)</b></i></label>
+            <textarea id="skills" rows="3" placeholder="Skills (format: skill:percentage)" required></textarea>
+            <label for="certifications"><i><b>Certifications</b></i></label>
+            <textarea id="certifications" rows="3" placeholder="Certifications (comma-separated)" required></textarea>
+
+            <button type="button" id="generateResume">Generate Resume</button>
+        </form>
+    </div>
+
+    <!-- Resume Display -->
+    <div class="resume-container" id="resumeContainer" style="display: none;">
+        <header>
+            <h1 id="displayName">Your Name</h1>
+            <p id="displayPosition">Your Position</p>
+            <img src="" alt="Profile Picture" id="displayProfilePicture" class="profile-picture" style="display: none;">
+            <div class="contact-info">
+                <p><strong>Phone:</strong> <span id="displayPhone"></span></p>
+                <p><strong>Email:</strong> <a id="displayEmail" href="mailto:"></a></p>
+                <p><strong>Address:</strong> <span id="displayAddress"></span></p>
+                <p><strong>LinkedIn:</strong> <a id="displayLinkedIn" href=""></a></p>
+            </div>
+        </header>
+        <div class="content">
+            <!-- Left Column -->
+            <div class="left-column">
+                <section>
+                    <h2>Career Objective</h2>
+                    <p id="displayObjective"></p>
+                </section>
+                <section>
+                    <h2>Skills</h2>
+                    <div id="displaySkills"></div>
+                </section>
+                <section>
+                    <h2>Certifications</h2>
+                    <div id="displayCertifications"></div>
+                </section>
+            </div>
+            <!-- Right Column -->
+            <div class="right-column">
+                <section>
+                    <h2>Work Experience</h2>
+                    <ul id="displayExperience"></ul>
+                </section>
+                <section>
+                    <h2>Education</h2>
+                    <ul id="displayEducation"></ul>
+                </section>
+                <!-- New Personal Info Display -->
+                <h2>Personal Info</h2>
+                <p><strong>S/o:</strong> <span id="displaySonOf"></span></p>
+                <p><strong>Date of Birth:</strong> <span id="displayDOB"></span></p>    
+                <p><strong>Nationality:</strong> <span id="displayNationality"></span></p>
+                <p><strong>Languages:</strong> <span id="displayLanguages"></span></p>
+                <p><strong>Hobbies:</strong> <span id="displayHobbies"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buttons Outside the Resume Container -->
+    <div class="button-container">
+        <button id="downloadPDF">Download PDF</button>
+        <button id="shareResume">Share Resume</button>
+        <input type="text" id="shareableLink" readonly placeholder="Your shareable link will appear here" />
+        <button id="editResume">Edit Resume</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+</body>
+</html>
